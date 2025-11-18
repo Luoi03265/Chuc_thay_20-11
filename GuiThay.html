@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chúc mừng 20/11 kiểu TikTok</title>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family: 'Segoe UI', sans-serif; overflow:hidden; background: #f0f2f5;}
+    .page {
+      width:100vw;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      position:absolute;
+      top:0; left:0;
+      transition: transform 0.5s ease;
+    }
+    .card {
+      background: rgba(255,255,255,0.95);
+      padding: 40px 30px;
+      border-radius: 20px;
+      text-align:center;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width:90%;
+    }
+    h1 {font-size:28px; color:#333; margin-bottom:20px;}
+    p {font-size:18px; color:#555; line-height:1.6;}
+    .floating {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      animation: floatAnim linear infinite;
+      opacity:0.8;
+      transition: transform 0.3s;
+    }
+    .floating:hover {transform: scale(1.3) rotate(15deg);}
+    @keyframes floatAnim {
+      0% { transform: translateY(-60px) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+    .nav-btn {position:fixed; bottom:20px; left:50%; transform:translateX(-50%); z-index:20; display:flex; gap:10px;}
+    .nav-btn button {padding:10px 20px; border:none; border-radius:8px; background:#d35400; color:white; cursor:pointer;}
+    iframe {width:320px; height:570px; border:none; border-radius:20px;}
+  </style>
+</head>
+<body>
+
+  <div class="page" id="page1" style="transform:translateY(0)">
+    <div class="card">
+      <h1>Chúc mừng 20/11</h1>
+      <p>Kính chúc thầy Trí Hiếu luôn mạnh khỏe, giữ mãi nhiệt huyết trong giảng dạy.<br>Cảm ơn thầy đã truyền cảm hứng cho chúng em trong nhưng lúc thi giỏi tin 
+    </div>
+  </div>
+
+  <div class="page" id="page2" style="transform:translateY(100vh)">
+    <div class="card">
+      <h1>Kỷ niệm lớp học</h1>
+      <p>Những khoảnh khắc đáng nhớ cùng thầy và các bạn trong đội tuyển tin 
+    </div>
+  </div>
+
+  <div class="page" id="page3" style="transform:translateY(200vh)">
+    <div class="card">
+      <h1>Hoạt động môn Tin học</h1>
+     
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/gwFs8ECaA3E?si=An1FH-RnToETCiKq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <source src="7238477649214.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <div class="page" id="page4" style="transform:translateY(300vh)">
+    <div class="card">
+      <h1>Lời nhắn từ học sinh</h1>
+<p>Tiến:Do là bận lịch học nên con không thể về chúc thầy trực tiếp 20/11 được nên đành gửi món quà nho nhỏ này tặng thầy 20/11 vui vẻ</p>
+<p>Thoa:3 năm đội tuyển Tin là ký ức quý giá đối với em.Cảm ơn thầy vì đã dìu dắt hướng dẫn từng chút .Cảm ơn thầy vì 3 năm thanh xuân rực rỡ. Chúc thầy 20/11 mạnh khỏe và hạnh phúc!</p>    
+</div>
+  </div>
+
+  <div class="page" id="page5" style="transform:translateY(400vh)">
+    <div class="card">
+      <h1>Lời kết</h1>
+      <p>Chúc thầy luôn vui vẻ, hạnh phúc và tiếp tục truyền cảm hứng cho các thế hệ học trò.</p>
+    </div>
+  </div>
+
+  <div class="nav-btn">
+    <button onclick="prevPage()">⬆️ Trước</button>
+    <button onclick="nextPage()">⬇️ Tiếp</button>
+  </div>
+
+  <script>
+    const icons = [
+      'https://cdn-icons-png.flaticon.com/512/2910/2910760.png',
+      'https://cdn-icons-png.flaticon.com/512/1995/1995574.png',
+      'https://cdn-icons-png.flaticon.com/512/1046/1046784.png',
+      'https://cdn-icons-png.flaticon.com/512/1099/1099133.png'
+    ];
+    function createFloatingIcon() {
+      const icon = document.createElement('img');
+      icon.src = icons[Math.floor(Math.random()*icons.length)];
+      icon.className='floating';
+      icon.style.left=Math.random()*window.innerWidth+'px';
+      icon.style.animationDuration=5+Math.random()*5+'s';
+      document.body.appendChild(icon);
+      setTimeout(()=>{icon.remove();},10000);
+    }
+    setInterval(createFloatingIcon,500);
+
+    let currentPage=0;
+    const pages=document.querySelectorAll('.page');
+    function showPage(index){
+      pages.forEach((p,i)=>{
+        p.style.transform=`translateY(${(i-index)*100}vh)`;
+      });
+      currentPage=index;
+    }
+    function nextPage(){ if(currentPage<pages.length-1) showPage(currentPage+1); }
+    function prevPage(){ if(currentPage>0) showPage(currentPage-1); }
+
+    // hỗ trợ scroll
+    window.addEventListener('wheel',e=>{
+      if(e.deltaY>0) nextPage();
+      else prevPage();
+    });
+  </script>
+
+</body>
+</html>
